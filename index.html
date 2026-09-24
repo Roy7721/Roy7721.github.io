@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rana Roy</title>
+<meta name="description" content="Rana Roy - machine learning and LLM systems. Two projects running live.">
+<style>
+  :root{
+    --bg:#ffffff; --fg:#16181d; --muted:#5b6472; --line:#e3e7ec;
+    --link:#1a4d8f; --card:#f7f9fb; --accent:#0f7b52;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f1115; --fg:#e6e9ee; --muted:#9aa4b2; --line:#252a33;
+      --link:#7fb2f0; --card:#161a21; --accent:#4ade80;
+    }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:56px 16px 80px}
+  h1{font-size:2rem; margin:0 0 .2em; letter-spacing:-.02em}
+  .tagline{color:var(--muted); margin:0 0 1.2em}
+  .contact{font-size:.92rem; color:var(--muted); margin:0 0 2.4em}
+  .contact a{color:var(--link)}
+  a{color:var(--link); text-decoration:none}
+  a:hover{text-decoration:underline}
+  h2{font-size:.82rem; text-transform:uppercase; letter-spacing:.08em;
+     color:var(--muted); font-weight:600; margin:2.6em 0 .9em;
+     padding-bottom:.5em; border-bottom:1px solid var(--line)}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:10px;
+        padding:18px 20px; margin-bottom:14px}
+  .card h3{margin:0 0 .3em; font-size:1.05rem}
+  .stack{font-size:.85rem; color:var(--muted); margin:0 0 .7em}
+  .card p{margin:0 0 .9em}
+  .links{display:flex; flex-wrap:wrap; gap:10px; font-size:.9rem}
+  .live{display:inline-block; padding:5px 12px; border-radius:6px;
+        background:var(--accent); color:#fff; font-weight:600}
+  .live:hover{text-decoration:none; opacity:.9}
+  html:not([data-theme="light"]) .live{color:#0f1115}
+  @media (prefers-color-scheme: light){ .live{color:#fff} }
+  .repo{display:inline-block; padding:5px 12px; border-radius:6px;
+        border:1px solid var(--line); color:var(--fg)}
+  .note{font-size:.82rem; color:var(--muted); margin-top:.6em}
+  footer{margin-top:3.5em; padding-top:1.4em; border-top:1px solid var(--line);
+         font-size:.88rem; color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Rana Roy</h1>
+  <p class="tagline">Machine learning and LLM systems &mdash; two of them running live.</p>
+  <p class="contact">
+    <a href="mailto:ranaroy4007@gmail.com">ranaroy4007@gmail.com</a> &middot;
+    <a href="https://github.com/Roy7721">GitHub</a> &middot;
+    <a href="https://linkedin.com/in/rana-roy-4771b5282">LinkedIn</a> &middot;
+    Bangladesh &mdash; open to remote
+  </p>
+
+  <h2>Live</h2>
+
+  <div class="card">
+    <h3>Investor Intelligence Bot</h3>
+    <p class="stack">FastAPI &middot; ChromaDB &middot; Google Gemini &middot; Docker &middot; Azure Container Apps</p>
+    <p>A retrieval system over SEC 10-K filings. Every extracted figure traces back to the
+       table row it was read from &mdash; 18/18 correct KPI extractions with automated
+       quote-traceability checks. It refuses rather than guesses: answers never leak across
+       filings, and a missing section is reported as missing instead of substituted.</p>
+    <div class="links">
+      <a class="live" href="https://investor-intelligence.ashysmoke-d4f578eb.koreacentral.azurecontainerapps.io">Open the live app</a>
+      <a class="repo" href="https://github.com/Roy7721/Investor_intelligence_bot">Source</a>
+    </div>
+    <p class="note">Scales to zero &mdash; the first request after an idle period takes ~20s to wake.</p>
+  </div>
+
+  <div class="card">
+    <h3>YouTube Comment Sentiment Analysis</h3>
+    <p class="stack">scikit-learn &middot; DVC &middot; MLflow &middot; GitHub Actions &middot; Azure Container Apps &middot; Chrome extension</p>
+    <p>A three-class sentiment classifier at 0.885 accuracy, behind a 5-stage reproducible
+       DVC pipeline and an MLflow model registry. CI/CD trains, tests, gates on accuracy
+       below 0.80, then deploys to Azure pinned to the commit SHA &mdash; on every green run.
+       Served to a Manifest V3 Chrome extension that analyses any video in place.</p>
+    <div class="links">
+      <a class="live" href="https://yt-sentiment-api.ashysmoke-d4f578eb.koreacentral.azurecontainerapps.io">Live API</a>
+      <a class="repo" href="https://github.com/Roy7721/yt_comment_analysis">Source</a>
+    </div>
+  </div>
+
+  <h2>Also worth a look</h2>
+
+  <div class="card">
+    <h3>AskTheVid &mdash; question answering over YouTube videos</h3>
+    <p class="stack">FastAPI &middot; Streamlit &middot; ChromaDB &middot; Groq &middot; all-MiniLM-L6-v2</p>
+    <p>Answers cite the timestamp they came from. A custom timestamp-preserving chunker on
+       ingestion, then per-query semantic retrieval answering in about a second, with
+       embeddings run locally on CPU.</p>
+    <div class="links">
+      <a class="repo" href="https://github.com/Roy7721/Yt_chatbot">Source</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>TripMate AI &middot; RAG evaluation with DeepEval</h3>
+    <p class="stack">LangGraph &middot; DeepEval</p>
+    <p>A LangGraph travel-planning agent, and a separate harness for measuring RAG quality
+       rather than eyeballing it.</p>
+    <div class="links">
+      <a class="repo" href="https://github.com/Roy7721/TripMate_AI">TripMate_AI</a>
+      <a class="repo" href="https://github.com/Roy7721/rag-eval-deepeval">rag-eval-deepeval</a>
+    </div>
+  </div>
+
+  <h2>Background</h2>
+  <p>MSc in Statistics, University of Rajshahi (CGPA 3.83/4.00). Thesis on determinants of
+     life expectancy across Asian economies using Panel ARDL. Two working papers, presented
+     at ICRAST and ICASDS 2025. Freelance data-cleaning work on HIES survey microdata, and
+     taught STATA to eight postgraduate students.</p>
+
+  <footer>
+    Open to AI/ML engineer, LLM engineer and data scientist roles &mdash; remote or Bangladesh.
+    <a href="mailto:ranaroy4007@gmail.com">Get in touch</a>.
+  </footer>
+
+</div>
+</body>
+</html>
