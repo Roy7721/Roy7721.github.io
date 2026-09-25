@@ -46,6 +46,11 @@
   .repo{display:inline-block; padding:5px 12px; border-radius:6px;
         border:1px solid var(--line); color:var(--fg)}
   .note{font-size:.82rem; color:var(--muted); margin-top:.6em}
+  .shot{max-width:100%; display:block; border:1px solid var(--line);
+        border-radius:8px; margin:1em 0 .2em}
+  pre{background:var(--bg); border:1px solid var(--line); border-radius:6px;
+      padding:10px 12px; overflow-x:auto; font-size:.78rem; margin:.9em 0 .4em}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
   footer{margin-top:3.5em; padding-top:1.4em; border-top:1px solid var(--line);
          font-size:.88rem; color:var(--muted)}
 </style>
@@ -54,7 +59,7 @@
 <div class="wrap">
 
   <h1>Rana Roy</h1>
-  <p class="tagline">Machine learning and LLM systems &mdash; two of them running live.</p>
+  <p class="tagline">Data Scientist, Machine Learning & AI Engineer </p>
   <p class="contact">
     <a href="mailto:ranaroy4007@gmail.com">ranaroy4007@gmail.com</a> &middot;
     <a href="https://github.com/Roy7721">GitHub</a> &middot;
@@ -81,14 +86,27 @@
   <div class="card">
     <h3>YouTube Comment Sentiment Analysis</h3>
     <p class="stack">scikit-learn &middot; DVC &middot; MLflow &middot; GitHub Actions &middot; Azure Container Apps &middot; Chrome extension</p>
-    <p>A three-class sentiment classifier at 0.885 accuracy, behind a 5-stage reproducible
-       DVC pipeline and an MLflow model registry. CI/CD trains, tests, gates on accuracy
-       below 0.80, then deploys to Azure pinned to the commit SHA &mdash; on every green run.
-       Served to a Manifest V3 Chrome extension that analyses any video in place.</p>
+    <p>An MLOps pipeline end to end: a 5-stage reproducible DVC pipeline, an MLflow model
+       registry, and CI/CD that trains, tests, blocks promotion below 0.80 accuracy, then
+       deploys to Azure pinned to the commit SHA &mdash; on every green run. Served to a
+       Manifest V3 Chrome extension that analyses any video in place.</p>
+    <p>The classifier is deliberately small &mdash; TF-IDF and logistic regression, chosen for
+       fast inference inside a browser plugin. Swapping in a transformer is a data and compute
+       question; the pipeline around it does not change.</p>
+    <img class="shot" loading="lazy"
+         src="https://raw.githubusercontent.com/Roy7721/yt_comment_analysis/master/assets/demo.gif"
+         alt="The Chrome extension analysing a YouTube video's comment section">
+    <p class="note">Trimmed &mdash; most of the elapsed time is YouTube lazy-loading the comment
+       section, not the API, which replies in well under a second once comments are collected.</p>
     <div class="links">
-      <a class="live" href="https://yt-sentiment-api.ashysmoke-d4f578eb.koreacentral.azurecontainerapps.io">Live API</a>
+      <a class="live" href="https://yt-sentiment-api.ashysmoke-d4f578eb.koreacentral.azurecontainerapps.io">Try the model</a>
       <a class="repo" href="https://github.com/Roy7721/yt_comment_analysis">Source</a>
+      <a class="repo" href="https://github.com/Roy7721/Chrome_plugin">Extension</a>
     </div>
+    <p class="note">The live page lets you classify your own comments. For the raw API:</p>
+<pre><code>curl -X POST https://yt-sentiment-api.ashysmoke-d4f578eb.koreacentral.azurecontainerapps.io/predict   -H "Content-Type: application/json"   -d '{"comments":["this is amazing","worst video ever","it was okay"]}'</code></pre>
+    <p class="note">The Chrome extension is the intended front end; it loads unpacked from the
+       extension repo above (<code>chrome://extensions</code> &rarr; Developer mode &rarr; Load unpacked).</p>
   </div>
 
   <h2>Also worth a look</h2>
@@ -119,7 +137,7 @@
   <p>MSc in Statistics, University of Rajshahi (CGPA 3.83/4.00). Thesis on determinants of
      life expectancy across Asian economies using Panel ARDL. Two working papers, presented
      at ICRAST and ICASDS 2025. Freelance data-cleaning work on HIES survey microdata, and
-     ex STATA Instructor for postgraduate students.</p>
+     and worked as a STATA instructor for postgraduate students.</p>
 
   <footer>
     Open to AI/ML engineer, LLM engineer and data scientist roles &mdash; remote or Bangladesh.
