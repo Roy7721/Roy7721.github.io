@@ -12,11 +12,11 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://roy7721.github.io/">
 <meta property="og:title" content="Rana Roy - Machine learning and LLM systems">
-<meta property="og:description" content="Two ML systems running live: a RAG system over SEC 10-K filings where every figure traces to its source table row, and an end-to-end MLOps pipeline that deploys to Azure on every green build.">
+<meta property="og:description" content="Three ML systems running live: a RAG system over SEC 10-K filings where every figure traces to its source table row, a multi-agent travel planner that pauses for human approval, and an end-to-end MLOps pipeline that deploys to Azure on every green build.">
 <meta property="og:image" content="https://roy7721.github.io/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Rana Roy - machine learning and LLM systems. Two projects running live.">
+<meta property="og:image:alt" content="Rana Roy - machine learning and LLM systems. Three projects running live.">
 <meta name="twitter:card" content="summary_large_image">
 <style>
   :root{
@@ -96,6 +96,29 @@
     <p class="note">Scales to zero &mdash; the first request after an idle period takes ~20s to wake.</p>
   </div>
 
+
+  <div class="card">
+    <h3>TripMate AI &mdash; multi-agent travel planner</h3>
+    <p class="stack">LangGraph &middot; Model Context Protocol &middot; FastAPI &middot; PostgreSQL &middot; Groq &middot; Azure Container Apps</p>
+    <p>A supervisor agent reads the request, decides which specialists it needs &mdash;
+       flights, hotels, weather, budget &mdash; and routes to only those, so a hotel-only
+       question never triggers a flight lookup. An input guardrail refuses off-topic and
+       harmful requests before any specialist runs.</p>
+    <p>The draft itinerary then pauses the graph for human approval. LangGraph's
+       <code>interrupt()</code> writes the paused run to PostgreSQL, so it outlives the
+       process and resumes where it stopped &mdash; approve it, or send it back with
+       feedback. Tools arrive over the Model Context Protocol from three kinds of server:
+       one hosted, one third-party, and a weather server written for this project.</p>
+    <div class="links">
+      <a class="live" href="https://tripmate-ai.ashysmoke-d4f578eb.koreacentral.azurecontainerapps.io">Plan a trip</a>
+      <a class="repo" href="https://github.com/Roy7721/TripMate_AI">Source</a>
+    </div>
+    <p class="note">Built in three documented versions &mdash; hand-written tools, then MCP
+       servers, then the supervised graph. A full plan takes about a minute of real agent
+       work; it also scales to zero, so the first request after an idle spell waits for the
+       container to wake.</p>
+  </div>
+
   <div class="card">
     <h3>YouTube Comment Sentiment Analysis</h3>
     <p class="stack">scikit-learn &middot; DVC &middot; MLflow &middot; GitHub Actions &middot; Azure Container Apps &middot; Chrome extension</p>
@@ -136,13 +159,13 @@
   </div>
 
   <div class="card">
-    <h3>TripMate AI &middot; RAG evaluation with DeepEval</h3>
-    <p class="stack">LangGraph &middot; DeepEval</p>
-    <p>A LangGraph travel-planning agent, and a separate harness for measuring RAG quality
-       rather than eyeballing it.</p>
+    <h3>rag-eval-deepeval &mdash; an evaluation suite for RAG</h3>
+    <p class="stack">DeepEval &middot; pytest</p>
+    <p>Retriever and reranker quality, faithfulness, toxicity, prompt leakage and scope
+       safety, plus cost and latency &mdash; run as tests against curated golden datasets,
+       so a change to a prompt or a retriever is measured rather than eyeballed.</p>
     <div class="links">
-      <a class="repo" href="https://github.com/Roy7721/TripMate_AI">TripMate_AI</a>
-      <a class="repo" href="https://github.com/Roy7721/rag-eval-deepeval">rag-eval-deepeval</a>
+      <a class="repo" href="https://github.com/Roy7721/rag-eval-deepeval">Source</a>
     </div>
   </div>
 
